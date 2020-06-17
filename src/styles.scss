@@ -1,0 +1,27 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body {
+  font-family: Lato;
+}
+
+h1 {
+  @apply text-3xl font-bold;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+button {
+  @apply m-3 px-3 bg-pink-200 rounded-lg;
+
+  &:hover {
+    @apply bg-pink-600;
+  }
+}
+
+hr {
+  @apply my-2 border-2 border-blue-900;
+}

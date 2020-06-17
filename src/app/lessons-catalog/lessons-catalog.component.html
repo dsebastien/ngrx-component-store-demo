@@ -1,0 +1,56 @@
+<header>
+  <h2>Lessons Catalog</h2>
+</header>
+<main>
+  <header class="top-toolbar">
+    <button *ngIf="lessonsCatalogStore.selectCanAddLessons | ngrxPush" (click)="addLesson()">Add lesson</button>
+    <button *ngIf="(lessonsCatalogStore.selectCanAddInstructors | ngrxPush) === true" (click)="addInstructor()">Add instructor</button>
+  </header>
+  <main>
+    <hr>
+    <div *ngIf="(lessonsCatalogStore.selectLessonsCount | ngrxPush) > 0; else nolessons">
+      <header>Lessons:</header>
+      <ul>
+        <li *ngFor="let lesson of (lessonsCatalogStore.selectLessons | ngrxPush)">
+          <app-lesson [lesson]="lesson" (removeRequested)="lessonsCatalogStore.removeLesson(lesson)" [canBeRemoved]="(lessonsCatalogStore.selectCanRemoveLessons | ngrxPush) === true"></app-lesson>
+        </li>
+      </ul>
+    </div>
+    <ng-template #nolessons>
+      No lessons added so far
+    </ng-template>
+    <hr>
+    <div *ngIf="(lessonsCatalogStore.selectInstructorsCount | ngrxPush) > 0; else noinstructors">
+      <header>Instructors:</header>
+      <ul>
+        <li *ngFor="let instructor of (lessonsCatalogStore.selectInstructors | ngrxPush)">
+          <app-instructor [instructor]="instructor" (removeRequested)="lessonsCatalogStore.removeInstructor(instructor)" [canBeRemoved]="(lessonsCatalogStore.selectCanRemoveInstructors | ngrxPush) === true"></app-instructor>
+        </li>
+      </ul>
+    </div>
+    <ng-template #noinstructors>
+      No instructors added so far
+    </ng-template>
+  </main>
+  <footer>
+    <h3>Modify the state using these:</h3>
+    <ul>
+      <li>
+        <button *ngIf="(lessonsCatalogStore.selectCanAddLessons | ngrxPush) === false" (click)="lessonsCatalogStore.allowAddingLessons()">Allow adding lessons</button>
+        <button *ngIf="lessonsCatalogStore.selectCanAddLessons | ngrxPush" (click)="lessonsCatalogStore.denyAddingLessons()">Deny adding lessons</button>
+        <button *ngIf="(lessonsCatalogStore.selectCanRemoveLessons | ngrxPush) === false" (click)="lessonsCatalogStore.allowRemovingLessons()">Allow removing lessons</button>
+        <button *ngIf="lessonsCatalogStore.selectCanRemoveLessons | ngrxPush" (click)="lessonsCatalogStore.denyRemovingLessons()">Deny removing lessons</button>
+      </li>
+
+      <li>
+        <button *ngIf="(lessonsCatalogStore.selectCanAddInstructors | ngrxPush) === false" (click)="lessonsCatalogStore.allowAddingInstructors()">Allow adding instructors</button>
+        <button *ngIf="lessonsCatalogStore.selectCanAddInstructors | ngrxPush" (click)="lessonsCatalogStore.denyAddingInstructors()">Deny adding instructors</button>
+        <button *ngIf="(lessonsCatalogStore.selectCanRemoveInstructors | ngrxPush) === false" (click)="lessonsCatalogStore.allowRemovingInstructors()">Allow removing instructors</button>
+        <button *ngIf="lessonsCatalogStore.selectCanRemoveInstructors | ngrxPush" (click)="lessonsCatalogStore.denyRemovingInstructors()">Deny removing instructors</button>
+      </li>
+      <li>
+        <button (click)="resetDemo()">Reset demo</button>
+      </li>
+    </ul>
+  </footer>
+</main>
