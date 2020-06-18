@@ -1,5 +1,5 @@
 import {ComponentStore} from '@ngrx/component-store';
-import {LessonsCatalogState} from "./lessons-catalog-view-model.intf";
+import {LessonsCatalogState} from "./lessons-catalog-state.intf";
 import {Injectable} from "@angular/core";
 import {Instructor, Lesson, LessonDifficulty} from "../domain-model.intf";
 import {Observable} from "rxjs";

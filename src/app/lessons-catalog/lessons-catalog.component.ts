@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {LessonsCatalogComponentStore} from "./lessons-catalog-component-store.service";
 import {LessonDifficulty} from "../domain-model.intf";
-import {LessonsCatalogState} from "./lessons-catalog-view-model.intf";
+import {LessonsCatalogState} from "./lessons-catalog-state.intf";
 
 const INITIAL_DEMO_STATE: LessonsCatalogState = {
   instructors: {
