@@ -210,22 +210,4 @@ export class LessonsCatalogComponentStore extends ComponentStore<LessonsCatalogS
                     this.addLesson(loadedLesson);
                 }),
             ));
-
-    // TODO add example effects
-
-    // // Effect example
-    // readonly saveAuthor = this.effect<Author>(
-    //     // every time `saveAuthor` is called, its argument
-    //     // is emitted into author$ Observable.
-    //     author$ => author$.pipe(
-    //         // calls private reducer to set state to SAVING
-    //         tap(author => this.savingAuthor(author)),
-    //         // allows to choose flattening strategy and
-    //         // calls API.
-    //         concatMap(author => this.api.saveAuthor(author)),
-    //         // calls private reducer to set state to SAVED
-    //         tap((author: Author) => this.saveAuthorSuccess(author)),
-    //     )
-    // );
-    //
 }
