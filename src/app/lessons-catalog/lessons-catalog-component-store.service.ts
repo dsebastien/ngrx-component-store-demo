@@ -1,7 +1,9 @@
-import { ComponentStore } from '@ngrx/component-store';
-import { LessonsCatalogState } from "./lessons-catalog-view-model.intf";
+import {ComponentStore} from '@ngrx/component-store';
+import {LessonsCatalogState} from "./lessons-catalog-view-model.intf";
 import {Injectable} from "@angular/core";
-import {Instructor, Lesson} from "../domain-model.intf";
+import {Instructor, Lesson, LessonDifficulty} from "../domain-model.intf";
+import {Observable} from "rxjs";
+import {concatMap, switchMap, tap} from "rxjs/operators";
 
 const DEFAULT_STATE: LessonsCatalogState = {
     lessons: {},
@@ -181,6 +183,33 @@ export class LessonsCatalogComponentStore extends ComponentStore<LessonsCatalogS
             };
         }
     );
+
+    readonly loadLessons = this.effect(
+        (origin$: Observable<{ page: number; offset: number; itemsPerPage: number; }>) =>
+            origin$.pipe(
+                switchMap((pageParameters) => {
+                    console.log("Loading some lessons. Parameters: ", pageParameters);
+                    // trigger async operation (let's imagine)
+                    const dummyDate = new Date();
+                    const retVal: Lesson[] = [
+                        {
+                            id: `loadedLesson-${dummyDate}-1`,
+                            name: `Dummy loaded lesson ${dummyDate} 1`,
+                            difficulty: LessonDifficulty.EASY,
+                        },
+                        {
+                            id: `loadedLesson-${dummyDate}-2`,
+                            name: `Dummy loaded lesson ${dummyDate} 2`,
+                            difficulty: LessonDifficulty.EASY,
+                        },
+                    ];
+                    return retVal;
+                }),
+                tap((loadedLesson) => {
+                    console.log("Loaded lessons. Adding it to the state: ", loadedLesson);
+                    this.addLesson(loadedLesson);
+                }),
+            ));
 
     // TODO add example effects
 

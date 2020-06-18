@@ -49,6 +49,9 @@
         <button *ngIf="lessonsCatalogStore.selectCanRemoveInstructors | ngrxPush" (click)="lessonsCatalogStore.denyRemovingInstructors()">Deny removing instructors</button>
       </li>
       <li>
+        <button (click)="lessonsCatalogStore.loadLessons()">Load lessons</button>
+      </li>
+      <li>
         <button (click)="resetDemo()">Reset demo</button>
       </li>
     </ul>
