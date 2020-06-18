@@ -30,7 +30,7 @@
         <button *ngIf="lessonsCatalogStore.selectCanRemoveLessons | ngrxPush" (click)="lessonsCatalogStore.denyRemovingLessons()">Deny removing lessons</button>
       </li>
       <li>
-        <button (click)="lessonsCatalogStore.loadLessons()">Load lessons</button>
+        <button (click)="lessonsCatalogStore.loadLessons({ page: 0, offset: 0, itemsPerPage: 2})">Load lessons</button>
       </li>
       <li>
         <button (click)="resetDemo()">Reset demo</button>
