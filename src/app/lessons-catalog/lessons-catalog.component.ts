@@ -4,18 +4,6 @@ import {LessonDifficulty} from "../domain-model.intf";
 import {LessonsCatalogState} from "./lessons-catalog-state.intf";
 
 const INITIAL_DEMO_STATE: LessonsCatalogState = {
-  instructors: {
-    "i1": {
-      id: "i1",
-      firstName: "Sébastien",
-      givenName: "Dubois",
-    },
-    "i2": {
-      id: "i2",
-      firstName: "foo",
-      givenName: "bar",
-    },
-  },
   lessons: {
     "l1": {
       id: "l1",
@@ -31,9 +19,7 @@ const INITIAL_DEMO_STATE: LessonsCatalogState = {
   // Let's imagine that the current user can't do everything
   // based on his current access level, at this specific moment
   canAddLessons: false,
-  canAddInstructors: false,
   canRemoveLessons: false,
-  canRemoveInstructors: true,
 };
 
 @Component({
@@ -50,8 +36,6 @@ export class LessonsCatalogComponent implements OnInit {
   // That state and the business logic is not needed here:
   // it has been extracted to the LessonsCatalogComponentStore
   //lessons: Record<string, Lesson>;
-  //instructors: Record<string, Instructor>;
-  //canAddInstructors: boolean;
   //canAddLessons: boolean;
   //...
 
@@ -65,16 +49,6 @@ export class LessonsCatalogComponent implements OnInit {
   ngOnInit() {
     // Set the state (there are multiple alternatives to do this)
     this.lessonsCatalogStore.setState(INITIAL_DEMO_STATE);
-  }
-
-  addInstructor(): void {
-    console.log("Adding instructor");
-    this.counter += 1;
-    this.lessonsCatalogStore.addInstructor({
-      id: `instructor-${this.counter}`,
-      firstName: `Foo `,
-      givenName: `Mario`,
-    });
   }
 
   addLesson(): void {

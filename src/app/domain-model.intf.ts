@@ -9,9 +9,3 @@ export enum LessonDifficulty {
   MEDIUM = "Medium",
   HARD = "Hard",
 }
-
-export interface Instructor {
-  id: string;
-  firstName: string;
-  givenName: string;
-}
