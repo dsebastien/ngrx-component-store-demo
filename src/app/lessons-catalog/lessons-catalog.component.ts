@@ -45,7 +45,7 @@ const INITIAL_DEMO_STATE: LessonsCatalogState = {
 })
 export class LessonsCatalogComponent implements OnInit {
   @Input()
-  name: string = "";
+  name = "";
 
   // That state and the business logic is not needed here:
   // it has been extracted to the LessonsCatalogComponentStore
