@@ -1,7 +1,13 @@
+:host {
+  @apply m-2 p-2 border-4 border-solid border-gray-400;
+}
+
 main {
-  @apply m-3;
 }
 
 header.top-toolbar {
   height: 40px;
+}
+
+footer {
 }

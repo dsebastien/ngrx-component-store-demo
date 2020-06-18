@@ -4,7 +4,11 @@
         Uses <a href="https://ngrx.io/guide/component-store">This smal demo uses NGRX component-store to isolate component-specific state & logic into a utility service (LessonsCatalogComponentStore)</a>
     </p>
     <main>
-        <app-lessons-catalog></app-lessons-catalog>
+        <button (click)="addCatalog()">Add a catalog</button>
+
+        <div class="catalogs-wrapper">
+            <app-lessons-catalog *ngFor="let catalog of catalogs" [name]="catalog" class="catalog"></app-lessons-catalog>
+        </div>
     </main>
 </div>
 

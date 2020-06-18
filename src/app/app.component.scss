@@ -1,3 +1,11 @@
 main {
   @apply m-5 p-5 rounded-sm bg-gray-300;
 }
+
+.catalogs-wrapper {
+  @apply flex flex-row flex-wrap;
+}
+
+.catalog {
+  @apply flex-shrink-0;
+}

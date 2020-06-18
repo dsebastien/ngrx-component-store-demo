@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {LessonsCatalogComponentStore} from "./lessons-catalog-component-store.service";
 import {LessonDifficulty} from "../domain-model.intf";
 import {LessonsCatalogState} from "./lessons-catalog-state.intf";
@@ -44,6 +44,9 @@ const INITIAL_DEMO_STATE: LessonsCatalogState = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LessonsCatalogComponent implements OnInit {
+  @Input()
+  name: string = "";
+
   // That state and the business logic is not needed here:
   // it has been extracted to the LessonsCatalogComponentStore
   //lessons: Record<string, Lesson>;
