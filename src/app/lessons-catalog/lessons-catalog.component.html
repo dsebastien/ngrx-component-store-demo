@@ -13,6 +13,7 @@
         <li *ngFor="let lesson of (lessonsCatalogStore.selectLessons | ngrxPush)">
           <app-lesson [lesson]="lesson" (removeRequested)="lessonsCatalogStore.removeLesson(lesson)" [canBeRemoved]="(lessonsCatalogStore.selectCanRemoveLessons | ngrxPush) === true"></app-lesson>
         </li>
+        <li *ngIf="lessonsCatalogStore.selectLoading | ngrxPush">Loading ...</li>
       </ul>
     </div>
     <ng-template #nolessons>

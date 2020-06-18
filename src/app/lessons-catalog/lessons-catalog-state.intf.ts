@@ -4,4 +4,5 @@ export interface LessonsCatalogState {
     lessons: Record<string, Lesson>;
     canAddLessons: boolean;
     canRemoveLessons: boolean;
+    loading: boolean;
 }

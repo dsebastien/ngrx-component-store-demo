@@ -20,6 +20,7 @@ const INITIAL_DEMO_STATE: LessonsCatalogState = {
   // based on his current access level, at this specific moment
   canAddLessons: false,
   canRemoveLessons: false,
+  loading: false,
 };
 
 @Component({

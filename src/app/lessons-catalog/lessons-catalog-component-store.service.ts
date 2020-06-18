@@ -3,12 +3,13 @@ import {LessonsCatalogState} from "./lessons-catalog-state.intf";
 import {Injectable} from "@angular/core";
 import {Lesson, LessonDifficulty} from "../domain-model.intf";
 import {Observable} from "rxjs";
-import {switchMap, tap} from "rxjs/operators";
+import {delay, switchMap, tap} from "rxjs/operators";
 
 const DEFAULT_STATE: LessonsCatalogState = {
     lessons: {},
     canAddLessons: false,
     canRemoveLessons: false,
+    loading: false,
 };
 
 @Injectable()
@@ -42,6 +43,10 @@ export class LessonsCatalogComponentStore extends ComponentStore<LessonsCatalogS
         this.selectLessons,
         lessons => lessons.length
     );
+
+    readonly selectLoading = this.select(state => {
+        return state.loading;
+    });
 
     /**
      * Adds or replaces a lesson (this is a reducer)
@@ -104,9 +109,19 @@ export class LessonsCatalogComponentStore extends ComponentStore<LessonsCatalogS
         }
     );
 
+    readonly setLoading = this.updater(
+        (state: LessonsCatalogState, newLoadingState: boolean) => {
+            return {
+                ...state,
+                loading: newLoadingState,
+            };
+        }
+    );
+
     readonly loadLessons = this.effect(
         (origin$: Observable<{ page: number; offset: number; itemsPerPage: number; }>) =>
             origin$.pipe(
+                tap(() => this.setLoading(true)),
                 switchMap((pageParameters) => {
                     console.log("Loading some lessons. Parameters: ", pageParameters);
                     // trigger async operation (let's imagine)
@@ -125,9 +140,11 @@ export class LessonsCatalogComponentStore extends ComponentStore<LessonsCatalogS
                     ];
                     return retVal;
                 }),
+                delay(500),
                 tap((loadedLesson) => {
                     console.log("Loaded lessons. Adding it to the state: ", loadedLesson);
                     this.addLesson(loadedLesson);
+                    this.setLoading(false);
                 }),
             ));
 }
