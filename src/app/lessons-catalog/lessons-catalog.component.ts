@@ -43,7 +43,7 @@ export class LessonsCatalogComponent implements OnInit {
   // don't worry about this
   private counter = 0;
 
-  constructor(private lessonsCatalogStore: LessonsCatalogComponentStore) {
+  constructor(public lessonsCatalogStore: LessonsCatalogComponentStore) {
     console.log("Lesson catalog initialized", lessonsCatalogStore);
   }
 
